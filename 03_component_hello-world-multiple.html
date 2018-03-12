@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>React! Component hello world</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+    body {
+    	margin: 0;
+    }
+    #container {
+       height: 100vh;
+    }
+    #container h1, #container h3 {
+    background-color: #EEE;
+      font-size: 144px;
+      font-family: sans-serif;
+      line-height: 100vh;
+        color: #0080a8;
+        margin: 0;
+        text-align: center;
+    }
+	</style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+
+class HelloWorld extends React.Component {
+    render() {
+       return <h1>Hello, world!</h1>
+    }
+}
+
+ReactDOM.render(
+  <div id="contaier">
+    <HelloWorld/>
+    <HelloWorld/>
+    <HelloWorld/>
+    <HelloWorld/>
+    <HelloWorld/>
+    <HelloWorld/>
+  </div>,
+  document.querySelector("#container")
+);
+
+    </script>
+</body>
+
+</html>
