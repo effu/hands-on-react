@@ -20,6 +20,8 @@ class LightningCounter extends React.Component {
     this.state = {
       strikes: 0
     };
+    // explicitly bind our timeTick function to our component
+    this.timerTick = this.timerTick.bind(this);
   }
 
   timerTick() {
@@ -38,6 +40,7 @@ class LightningCounter extends React.Component {
     );
   }
 }
+
 
     class LightningCounterDisplay extends React.Component {
       render() {
