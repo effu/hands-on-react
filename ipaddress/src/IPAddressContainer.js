@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import IPAddress from './IPAddress';
 
 var xhr;
 
@@ -6,8 +7,12 @@ class IPAddressContainer extends Component {
   constructor(props, context) {
     super(props, context);
 
+// add new fields to the state
+
     this.state = {
-      ip_address: "..."
+      ip_address: "...",
+      hostname: "...",
+      location: "...",
     };
 
     this.processRequest = this.processRequest.bind(this);
@@ -25,15 +30,22 @@ class IPAddressContainer extends Component {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
 
+// update state with new fields
+
       this.setState({
-        ip_address: response.ip
+        ip_address: response.ip,
+        hostname: response.hostname,
+        location: response.loc
       });
     }
   }
 
   render() {
+
+  // pass fields to the IPAddress component
+  
     return (
-      <div>{this.state.ip_address}</div>
+      <IPAddress ip={this.state.ip_address} hostname={this.state.hostname} location={this.state.location} />
     );
   }
 };
