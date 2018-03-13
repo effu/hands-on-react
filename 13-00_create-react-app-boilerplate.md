@@ -15,16 +15,24 @@ Using a few commands you can setup a React boilerplate app
 [Create React project website] (https://github.com/facebookincubator/create-react-app) 
 
 After you have Node installed type this in your terminal / command prompt:
-`npm install -g create-react-app`
+```
+npm install -g create-react-app
+```
 
 When that is done type the following to create your first app called 'helloworld'
-`create-react-app helloworld`
+```
+create-react-app helloworld
+```
 
-Changee directories to your new app
-`cd helloworld`
+Change directories to your new app
+```
+cd helloworld
+```
 
 Run this command in the helloworld directory
-`npm start`
+```
+npm start
+```
 
 This is the index.html file in the helloworld/public directory:
 ```
