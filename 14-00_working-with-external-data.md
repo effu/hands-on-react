@@ -48,9 +48,11 @@ There are a few more things that XMLHttpRequest does, but those things aren’t 
 create-react-app ipaddress
 ```
 
+Remove everything in the *public/* and *src/* directories.
+
 Create a #container for our app.
 
-### ipaddress/public/index.html
+### public/index.html
 ```
 <!doctype html>
 <html>
@@ -67,7 +69,7 @@ Create a #container for our app.
 
 Add the IPAddressContainer component to our #container.
 
-### ipaddress/src/index.js
+### src/index.js
 ```
 import React from "react";
 import ReactDOM from "react-dom";
@@ -86,20 +88,18 @@ ReactDOM.render(
 
 Add some styling
 
-### ipaddress/src/index.css
+### src/index.css
 ```
 body {
   background-color: #FFCC00;
 }
 ```
 
-## GETTING THE IP ADDRESS
+## Getting the IP Address
 
-Next on our plate is to create a component whose job it is to fetch the IP address from a web service, store it as state, and then share that state as a prop to any component that requires it. Let’s create a component to help with all of this. Inside your src folder, add a file called IPAddressContainer.js, and add the following lines inside it:
+## Create our IpAddressContainer dummy component
 
-## Create our IpAddressContainer component
-
-### ipaddress/src/IPAddressContainer.js
+### src/IPAddressContainer.js
 ```
 import React, { Component } from "react";
 
