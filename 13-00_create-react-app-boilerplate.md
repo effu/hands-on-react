@@ -131,8 +131,10 @@ body {
   margin: 0;
 }
 ```
+
 ### helloworld/src/index.js
 Update the index.js file and import the css file we just made.
+
 ```
 import React from "react";
 import ReactDOM from "react-dom";
