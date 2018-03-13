@@ -1,5 +1,6 @@
 # helloworld app
 helloworld/node_modules/
+ipaddress/node_modules/
 
 # Logs
 logs

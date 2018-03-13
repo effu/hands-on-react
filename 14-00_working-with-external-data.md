@@ -42,19 +42,15 @@ In JavaScript, the object that is responsible for allowing you to send and recei
 
 There are a few more things that XMLHttpRequest does, but those things aren’t important for us to deal with right now.
 
-Why not use 3rd party libraries?
-A bunch of 3rd party libraries wrap and simplify how you can work with the XMLHttpRequest object. Feel free to use them if you want, but using the XMLHttpRequest object directly isn’t very complicated either. It’s only a few lines of code, and (compared to everything we’ve been through in learning React) it’ll be some of the easiest lines of code you’ll encounter :P
+## Create a new react app called 'ipaddress'
 
-IT’S REACT TIME!
-Now that we have a good-enough understanding of how HTTP requests and the XMLHttpRequest object work, it is time to shift our focus to the React side of the house. I should warn you, though. There is very little React brings to the table when it comes to working with external data. The reason has to do with React being primarily focused on the presentation layer (aka the V in MVC). What we will be doing is writing regular, boring JavaScript inside a React component whose primary purpose will be to deal with the web requests we will be making. We will talk more about that design choice in a little bit, but let’s get the example up and running first.
-
-Getting Started
-The first step is to create a new React app. From your command line, navigate to the folder you want to create your new project, and enter the following:
-
+```
 create-react-app ipaddress
-Press Enter/Return to run that command. A few moments later, a brand new React project will get created. Since we want to start from a blank slate, we are going to delete a lot of things. First, delete everything under your public folder. Next, delete everything inside your src folder. Don’t worry. We will fill them back with the content we care about in a few moments...starting with our HTML file.
+```
 
-Inside our public folder, create a new file called index.html. Add the following content into it:
+Create a #container for our app.
+
+### ipaddress/public/index.html
 ```
 <!doctype html>
 <html>
@@ -69,8 +65,9 @@ Inside our public folder, create a new file called index.html. Add the following
 </html>
 ```
 
-All we have going here is a div element named container. Next, go to your src folder and create a new file called index.js. Inside this file, add the following:
+Add the IPAddressContainer component to our #container.
 
+### ipaddress/src/index.js
 ```
 import React from "react";
 import ReactDOM from "react-dom";
@@ -87,21 +84,22 @@ ReactDOM.render(
 );
 ```
 
-This is the script entry point for our app, and it contains the boilerplate references to React, ReactDOM, a non-existent CSS file, and a non-existent IPAddressContainer component. We also have the ReactDOM.render call that is responsible for writing our content to the container div element we defined in our HTML a few moments ago.
+Add some styling
 
-There is just one more thing to do before we get to the really interesting stuff. Inside the src folder, create our index.css file and add the following style rule into it:
-
+### ipaddress/src/index.css
 ```
 body {
   background-color: #FFCC00;
 }
 ```
 
-Save all of our changes if you haven’t done so already. We sorta have the beginnings of our app started. In the next section, we are going to make our app really useful...or at least get really REALLY close!
+## GETTING THE IP ADDRESS
 
-GETTING THE IP ADDRESS
 Next on our plate is to create a component whose job it is to fetch the IP address from a web service, store it as state, and then share that state as a prop to any component that requires it. Let’s create a component to help with all of this. Inside your src folder, add a file called IPAddressContainer.js, and add the following lines inside it:
 
+## Create our IpAddressContainer component
+
+### ipaddress/src/IPAddressContainer.js
 ```
 import React, { Component } from "react";
 
