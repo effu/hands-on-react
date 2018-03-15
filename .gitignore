@@ -3,6 +3,9 @@ helloworld/node_modules/
 ipaddress/node_modules/
 todolist/node_modules/
 
+# PHP
+.phpintel/
+
 # Logs
 logs
 *.log
