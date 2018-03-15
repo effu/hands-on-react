@@ -67,10 +67,8 @@ ReactDOM.render(
 
 ## Start the foundation for our app
 
-Right now, our app doesn’t do a whole lot. It doesn’t look like much either. We’ll deal with the functionality in a little bit, but first let’s get the various UI elements up and running. That isn’t very complicated for our app! The first thing we are going to do to is get our input field and button to appear. This is all done by using the div, form, input, and button elements!
-
-All of that will live inside a component we are going to call TodoList. In your src folder, add a file called TodoList.js. Inside this file, add the following things:
-
+### src/TodoList.js
+```
 import React, { Component } from "react";
 
 class TodoList extends Component {
@@ -90,6 +88,8 @@ class TodoList extends Component {
 }
 
 export default TodoList;
+```
+
 Take a moment to glance at what we’ve added. There is a bunch of JSX that gets our form elements up and running. To use our newly created TodoList component, let’s go back to index.js and reference it to see what our app looks like right now. Go ahead and make the following two changes:
 
 import React from "react";
@@ -373,14 +373,18 @@ At this point, we can add items and see them appear. What we can’t do is remov
 
 The first thing we will do is set up the event handler for dealing with the click event. Change the return statement under createTasks to look as follows:
 
+```
 createTasks(item) {
   return <li onClick={() => this.delete(item.key)}
               key={item.key}>{item.text}</li>
 }
+```
+
 All we are doing is listening to the click event and associating it with an event handler called delete. Now, what may be new is our approach for passing arguments to the event handler. Because of how event arguments and event handlers deal with scope, we work around all of those issues by using an arrow function that allows us to maintain both the default event argument while allowing us to pass in our own arguments as well. If this seems bizarre, you may feel better knowing that this is a JavaScript quirk and has nothing to do with React :P
 
 Anyway, after you’ve made this change, what we need to define next is our delete event handler. Make the following highlighted changes:
 
+```
 class TodoItems extends Component {
   constructor(props, context) {
     super(props, context);
@@ -394,10 +398,13 @@ class TodoItems extends Component {
     .
     .
     .
+```
+
 We define a function called delete that takes our argument for the item key. To ensure this resolves properly, we explicitly bind this in the constructor. Notice that our delete function doesn’t actually do any deleting. It just calls another delete function passed in to this component via props. We’ll work backwards from here and deal with that next.
 
 In TodoList.js, take a look at our render function. When calling TodoItems, let’s specify a prop called delete and set it to the value of a function called deleteItem:
 
+```
 render() {
   return (
     <div className="todoListMain">
@@ -414,10 +421,12 @@ render() {
     </div>
   );
 }
+```
 This change ensures our TodoItems component now has knowledge of a prop called delete. This also means our delete function we added in TodoList actually connects. All that remains is actually defining our deleteItem function so that it can deal with deleting an item.
 
 First, go ahead and add the deleteItem function to your TodoList component:
 
+```
 deleteItem(key) {
   var filteredItems = this.state.items.filter(function (item) {
     return (item.key !== key);
@@ -427,8 +436,10 @@ deleteItem(key) {
     items: filteredItems
   });
 }
+```
 You can add it anywhere, but my preference is to put it just below where our addItem function lives. Take a look at what this code does. We are passing the key from our clicked item all the way here, and we check this key against all of the items we are storing currently via the filter method:
 
+```
 var filteredItems = this.state.items.filter(function (item) {
   return (item.key !== key);
 });
@@ -437,8 +448,10 @@ The result of this code running is simple. We create a new array called filtered
 this.setState({
   items: filteredItems
 });
+```
 This results in our UI updating with the removed item disappearing...forever. The last thing we need to do is deal with the usual shenanigans around this. Make the following change in the constructor:
 
+```
 constructor(props, context) {
   super(props, context);
 
@@ -465,6 +478,7 @@ This will ensure that all references to this inside deleteItem will reference th
   background-color: pink;
   cursor: pointer;
 }
+```
 This will provide the hover effect when you move the mouse cursor over the item you wish to remove. With this change done, our remove item functionality should be complete. If you preview your app now, try adding some items and removing them. It should work well. There is just one more thing...
 
 ANIMATION! ANIMATION! ANIMATION!
@@ -476,12 +490,17 @@ Fortunately, the React community has come up with a handful of lightweight anima
 
 To use this library, we need to first add it to our project. From your command line, make sure you are still in the same location as our todolist project and run the following command:
 
-npm i -S react-flip-move
+`npm i -S react-flip-move`
+
 Hit Enter/Return to copy all the necessary things locally into our project’s node_modules folder. That’s all the setup required. Once you have done this, in TodoItems.js, add the following import statement at the top:
 
+```
 import FlipMove from 'react-flip-move';
+```
+
 All that is left is to just tell our FlipMove component to animate our list of items. In our render function, make the following highlighted change:
 
+```
 render() {
   var todoEntries = this.props.entries;
   var listItems = todoEntries.map(this.createTasks);
@@ -494,19 +513,18 @@ render() {
     </ul>
   );
 }
+```
+
 All we are doing is wrapping our listItems (just prior to them getting printed) inside a FlipMove component and specifying the animation duration and the type of easing function to use. That’s it. If you preview your app now, you’ll now see that adding and removing items doesn’t just suddenly happen. These items are smoothly animated instead.
 
-Uncontrolled Components vs. Controlled Components
+## Uncontrolled Components vs. Controlled Components
 
 Form elements are interesting. These are elements that contain some state on their own. For example, your text element might have some content in it, you may have some items already selected in a drop-down, and so on. React is all about centralizing all state into its own little world, so it doesn’t like that form elements have their own internal mechanism for storing state. The guidance is to synchronize all of the form data inside a React component by using events like onChange. These components that let React deal with form elements are known as Controlled Components.
 
 While that is the guidance, it is a hassle to have every form element deal with keeping state in sync. The React developers get that as well. The workaround is to do nothing. We simply let form elements deal with their own state and use refs to access the values when needed. That is what we did in this example. When we have components that defer all state management to the form DOM element, these components are known as Uncontrolled Components.
 
-CONCLUSION
+# CONCLUSION
+
 Our Todo app is pretty simple in what it does, but by building it from scratch, we covered almost every little interesting detail React brings to the table. More importantly, we created an example that shows how the various concepts we learned individually play together. That is actually the important detail. Now, here is a quick question for you: does everything we’ve done in this chapter make sense?
 
 If everything we’ve done in this chapter makes sense then you are in good shape to tell your friends and family that you are close to mastering React! If there are areas that you find confusing, I suggest you go back and re-read the chapters which address your confusion.
-
-CopyAdd Highlight Add Note
-Recommended Playlists  History Topics Tutorials Settings Get the App Sign Out
-© 2018 Safari. Terms of Service / Privacy Policy
