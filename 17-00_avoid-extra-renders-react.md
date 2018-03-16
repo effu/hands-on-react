@@ -9,11 +9,9 @@ You have your finished app on one side. You have the components that make up the
 
 Now that you have a very basic idea of how React works, let’s get back into the weeds where our components and their render methods live. In all of the React code we’ve written so far, you may have also noticed that we never had to explicitly call the render method on any component. That just sort of happened automatically. Let’s get more precise here. There are three things that will cause a render method to automatically get called:
 
-1. A prop that lives on your component gets updated
-
-2. A state property that lives on your component gets updated
-
-3. A parent component’s render method gets called
+1. A prop that lives on your component gets updated  
+2. A state property that lives on your component gets updated  
+3. A parent component’s render method gets called  
 
 All three of these cases seem like good examples of when we want our component’s render method to be automatically called. After all, all three of these cases could cause your visual state to change. Right?
 
