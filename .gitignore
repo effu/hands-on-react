@@ -4,6 +4,7 @@ ipaddress/node_modules/
 todolist/node_modules/
 slidingmenu/node_modules/
 react_spa/node_modules/
+reduxcounter/node_modules/
 
 # PHP
 .phpintel/
