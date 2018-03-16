@@ -2,6 +2,7 @@
 helloworld/node_modules/
 ipaddress/node_modules/
 todolist/node_modules/
+slidingmenu/node_modules/
 
 # PHP
 .phpintel/
