@@ -227,7 +227,7 @@ class Main extends Component {
 }
 ```
 The HashRouter component provides the foundation for the navigation and browser history handling that routing is made up of. What we are going to do next is define our navigation links. We already have list elements with the a element defined. We need to replace them with the more specialized NavLink component, so go ahead and make the following highlighted changes:
-
+```
 class Main extends Component {
   render() {
     return (
@@ -247,8 +247,9 @@ class Main extends Component {
     );
   }
 }
+```
 For each link, pay attention to the URL we are telling our router to navigate to. This URL value (defined by the to prop) acts as an identifier to ensure the right content gets loaded. The way we match the URL with the content is by using a Route component. Go ahead and add the following highlighted lines:
-
+```
 class Main extends Component {
   render() {
     return (
@@ -270,6 +271,7 @@ class Main extends Component {
     );
   }
 }
+```
 As you can see, the Route component contains a path prop. The value you specify for the path determines when this route is going to be active. When a route is active, the component specified by the component prop gets rendered. For example, when we click on the Stuff link (whose path is /stuff as set by the NavLink component’s to prop), the route whose path value is also /stuff becomes active. This means the contents of our Stuff component get rendered.
 
 You can see all of this for yourself. Jump back to your browser to see the live updates or run npm start again. Click around on the links to see the content loading in and out. Something seems off, though, right? The content for our home page seems to always display even if we are clicking on the Stuff or Contact links:
@@ -281,17 +283,18 @@ In the previous section, we got our SPA mostly up and running. We just wrapped o
 
 Fixing our Routing
 We ended the previous section by calling out that our routing has a bug in it. The contents of our Home component is always displaying. The reason for it is because the path for loading our Home component is /. Our Stuff and Contact components have the / character as part of their paths as well. This means our Home component always matches whatever path we are trying to navigate to. The fix for that is simple. In the Route component representing our home content, add the exact prop as highlighted below:
-
+```
 <div className="content">
   <Route exact path="/" component={Home}/>
   <Route path="/stuff" component={Stuff}/>
   <Route path="/contact" component={Contact}/>
 </div>
+```
 This prop ensures the Route is active only if the path is an exact match for what is being loaded. If you preview your app now, you’ll see that the content loads correctly with the home content only displaying when our app is in the home view.
 
 Adding Some CSS
 Right now, our app is completely unstyled. The fix for that is easy. In your src folder, create a file called index.css and add the following style rules into it:
-
+```
 body {
   background-color: #FFCC00;
   padding: 20px;
@@ -327,6 +330,7 @@ ul.header li a {
 .content li {
   margin-bottom: 10px;
 }
+```
 After you’ve done this, we need to reference this style sheet in our app. At the top of index.js, add the import statement to do just that:
 
 import React from "react";
